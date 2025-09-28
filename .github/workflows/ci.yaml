@@ -7,8 +7,8 @@ jobs:
   check-application:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2 # baixa os arquivos alterados e salva na pasta do job (ubuntu:latest)
-      - uses: actions/setup-go@v2 # prepare o ambiente com a versão do go
+      - uses: actions/checkout@v5.0.0 # baixa os arquivos alterados e salva na pasta do job (ubuntu:latest)
+      - uses: actions/setup-go@v6.0.0 # prepare o ambiente com a versão do go
         with:
           go-version: 1.24.6
       - run: go test
@@ -29,5 +29,6 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v6.18.0
         with:
-          push: false
+          push: true # Se true faz o push da imagem para o DockerHub
+          # push: ${{ github.ref == 'refs/heads/main' }} Assim só faz push quando for merge na branch main!
           tags: welsantana/ci-go:latest
