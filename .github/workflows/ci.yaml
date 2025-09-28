@@ -29,5 +29,5 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v6.18.0
         with:
-          push: true
+          push: false
           tags: welsantana/ci-go:latest
